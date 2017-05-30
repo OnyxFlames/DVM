@@ -77,10 +77,9 @@ Object* DVM::pushstr(std::string val)
 	int i = 0;
 	for (i = ++stk_ptr; i < (stk_ptr + val.length()); ++i)
 	{
-		stack[i].u8 = val[(i - stk_ptr) - 1];
+		stack[i].u8 = val[(i - stk_ptr)];
 	}
-	stk_ptr = i;
+	stk_ptr = i-1;
 	// In this case, return the start of the array.
-	return &Object();
-	return &stack[i - val.length()];
+	return &stack[stk_ptr - val.size() + 1];
 }
