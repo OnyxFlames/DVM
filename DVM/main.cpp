@@ -4,10 +4,21 @@
 
 #include "argument_handler.hpp"
 
+#include "Dvm.hpp"
+
+using std::ios;
+
 int main(int argc, char* argv[])
 {
+	//handle_args(argc, argv);
 
-	handle_args(argc, argv);
+
+	// Tests
+	DVM dvm;
+
+	dvm.pushstr("TEST");
+
+	getchar();
 
 	return 0;
 }
