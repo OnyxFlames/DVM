@@ -16,6 +16,20 @@ private:
 	Object* stack;
 	// Current max size the stack is, if the stack allocates more than this, throw StackOverFlowError
 	uint64_t max_size;
+
+	// inline push functions, returns address that the variable was allocated on
+	Object* pushi8(int8_t val);
+	Object* pushu8(uint8_t val);
+	Object* pushi16(int16_t val);
+	Object* pushu16(uint16_t val);
+	Object* pushi32(int32_t val);
+	Object* pushu32(uint32_t val);
+	Object* pushi64(int64_t val);
+	Object* pushu64(uint64_t val);
+	Object* pushf32(float val);
+	Object* pushf64(double val);
+	Object* pushstr(std::string val);
+
 public:
 	DVM();
 	~DVM();
@@ -36,15 +50,5 @@ public:
 			std::exit(-1);
 		}
 	}
-	// inline push functions, returns address that the variable was allocated on
-	Object* pushi8(int8_t val);
-	Object* pushu8(uint8_t val);
-	Object* pushi16(int16_t val);
-	Object* pushu16(uint16_t val);
-	Object* pushi32(int32_t val);
-	Object* pushu32(uint32_t val);
-	Object* pushi64(int64_t val);
-	Object* pushu64(uint64_t val);
-	Object* pushstr(std::string val);
 };
 

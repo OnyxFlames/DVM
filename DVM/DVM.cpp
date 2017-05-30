@@ -72,6 +72,20 @@ Object* DVM::pushu64(uint64_t val)
 	stack[++stk_ptr].u64 = val;
 	return &stack[stk_ptr];
 }
+Object* DVM::pushf32(float val)
+{
+	if (stk_ptr + 1 > ALLOC_SIZE_MODIFIED)
+		throw StackOverFlowException("Stack tried to allocate more space than available!\n");
+	stack[++stk_ptr].f32 = val;
+	return &stack[stk_ptr];
+}
+Object* DVM::pushf64(double val)
+{
+	if (stk_ptr + 1 > ALLOC_SIZE_MODIFIED)
+		throw StackOverFlowException("Stack tried to allocate more space than available!\n");
+	stack[++stk_ptr].f64 = val;
+	return &stack[stk_ptr];
+}
 Object* DVM::pushstr(std::string val)
 {
 	int i = 0;

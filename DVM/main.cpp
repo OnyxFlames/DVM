@@ -15,8 +15,6 @@ int main(int argc, char* argv[])
 
 	// Tests
 	DVM dvm;
-
-	std::cout << (char)dvm.pushstr("12345678910")->u8;
 	
 	getchar();
 
