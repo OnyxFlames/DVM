@@ -34,7 +34,7 @@ public:
 	DVM();
 	~DVM();
 
-	Object top()
+	Object& top()
 	{
 		return stack[stk_ptr];
 	}

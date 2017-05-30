@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
 
 	// Tests
 	DVM dvm;
-	
+
 	getchar();
 
 	return 0;
