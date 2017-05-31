@@ -30,6 +30,9 @@
     <ClCompile Include="StackOverFlowException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DVM_Stack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="argument_handler.hpp">

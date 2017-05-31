@@ -18,6 +18,9 @@ enum state {
 	RUNNING = 0x20,
 };
 
+#define ALLOC_SIZE 2000u
+static int ALLOC_SIZE_MODIFIED = ALLOC_SIZE;
+
 class DVM
 {
 private:
