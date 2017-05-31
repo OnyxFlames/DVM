@@ -15,6 +15,7 @@ int main(int argc, char* argv[])
 
 	// Tests
 	DVM dvm;
+	dvm.run();
 
 	getchar();
 

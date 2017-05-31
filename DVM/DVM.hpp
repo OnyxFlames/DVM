@@ -4,13 +4,25 @@
 
 #include "StackOverFlowException.hpp"
 
+#include <fstream>
+#include <string>
+#include <vector>
+#include <map>
 // Stack size is determined by 'slots'.
 // Each slot is 64 bits wide [sizeof(Object)] which is one 'element' of the stack.
 // Stack size is determined by a default, but if the --stack-size <number of elements for stack to attempt to hold>
+
+enum state {
+	HALTED = 0x00,
+	RESTARTING = 0x10,
+	RUNNING = 0x20,
+};
+
 class DVM
 {
 private:
-	//Index for stack. Can read up to element 16^2-1
+	uint8_t state = RUNNING;
+	//Index for stack. Can read up to element 2^16-1
 	uint16_t stk_ptr = 0;
 	// Stack is technically on the heap, but this is for dynamic stack sizes.
 	Object* stack;
@@ -30,6 +42,14 @@ private:
 	Object* pushf64(double val);
 	Object* pushstr(std::string val);
 
+
+	// Actual ROM
+	std::vector<unsigned char> ROM = {
+		9, 255, 255, 255, 255, 0x00,
+	};
+	// List of ROM loaded functions, sorted by 4 byte values assigned at loadtime
+	std::map<uint32_t, std::vector<unsigned char>> FUNCTIONS;
+	
 public:
 	DVM();
 	~DVM();
@@ -50,5 +70,10 @@ public:
 			std::exit(-1);
 		}
 	}
+
+	bool loadROM(const std::string filename);
+	bool unloadROM() { state = HALTED; ROM.erase(ROM.begin(), ROM.end()); }
+	void restart() { state = RESTARTING; }
+	bool run();
 };
 
