@@ -41,6 +41,7 @@ private:
 	Object* pushf32(float val);
 	Object* pushf64(double val);
 	Object* pushstr(std::string val);
+	Object* pushObj(Object val);
 
 
 	// Actual ROM

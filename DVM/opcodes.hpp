@@ -7,6 +7,7 @@ enum opcodes : uint32_t
 	HALT = 0x00,	// Immediately stop execution
 	RESTART,		// restart the VM instance
 	PRINT,			// Operands: 2 bytes. Prints following N bytes of data to stdio
+	PRINTC,			// Operands: 2 bytes. Prints following N bytes of data to stdio casted as ascii characters
 	READ,			// Operands: 2 bytes. Reads N bytes worth of data onto the stack as u8's
 
 	PUSHI8,		PUSHU8,
@@ -14,7 +15,9 @@ enum opcodes : uint32_t
 	PUSHI32,	PUSHU32,
 	PUSHI64,	PUSHU64,
 	PUSHF32,	PUSHF64,
-
-	ADD, SUB, MUL,
+	// F-variants are not yet implemented
+	ADD, ADDF,
+	SUB, SUBF,
+	MUL, MULF,
 	DIV, DIVF,
 };

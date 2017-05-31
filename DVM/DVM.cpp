@@ -78,11 +78,61 @@ bool DVM::run()
 				std::cout << top().types.u32 << "\n"; break;
 			case PUSHI64: pushi64(0x00); break;
 			case PUSHU64: pushu64(0x00); break;
-
+			// TODO: Move the modifiers (ADD, SUb, etc) into their own file.
 			case ADD:
-
+				Object buff[2];
+				Type type;
+				type = stack[stk_ptr].curr_type;
+				buff[0] = top();
+				pop();
+				buff[1] = top();
+				pop();
+				buff[0].types.u64 = buff[0].types.u64 + buff[1].types.u64;
+				pushObj(buff[0]);
+				top().curr_type = type;
 			break;
+			case SUB:
+				Object buff[2];
+				Type type;
+				type = stack[stk_ptr].curr_type;
+				buff[0] = top();
+				pop();
+				buff[1] = top();
+				pop();
+				buff[0].types.u64 = buff[0].types.u64 - buff[1].types.u64;
+				pushObj(buff[0]);
+				top().curr_type = type;
+				break;
+			case MUL:
+				Object buff[2];
+				Type type;
+				type = stack[stk_ptr].curr_type;
+				buff[0] = top();
+				pop();
+				buff[1] = top();
+				pop();
+				buff[0].types.u64 = buff[0].types.u64 * buff[1].types.u64;
+				pushObj(buff[0]);
+				top().curr_type = type;
+				break;
+			case DIV:
+				Object buff[2];
+				Type type;
+				type = stack[stk_ptr].curr_type;
+				buff[0] = top();
+				pop();
+				buff[1] = top();
+				pop();
+				buff[0].types.u64 = buff[0].types.u64 + buff[1].types.u64;
+				pushObj(buff[0]);
+				top().curr_type = type;
+				break;
+			case PRINT:
 
+				break;
+			case PRINTC:
+
+				break;
 			}
 		}
 	if (state = RUNNING)
@@ -174,4 +224,11 @@ Object* DVM::pushstr(std::string val)
 	stk_ptr = i-1;
 	// In this case, return the start of the array.
 	return &stack[stk_ptr - val.size() + 1];
+}
+Object* DVM::pushObj(Object val)
+{
+	if (stk_ptr + 1 > ALLOC_SIZE_MODIFIED)
+		throw StackOverFlowException("Stack tried to allocate more space than available!\n");
+	stack[++stk_ptr] = val;
+	return &stack[stk_ptr];
 }
