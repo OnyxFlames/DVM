@@ -30,18 +30,18 @@ private:
 	uint64_t max_size;
 
 	// inline push functions, returns address that the variable was allocated on
-	Object* pushi8(int8_t val);
-	Object* pushu8(uint8_t val);
-	Object* pushi16(int16_t val);
-	Object* pushu16(uint16_t val);
-	Object* pushi32(int32_t val);
-	Object* pushu32(uint32_t val);
-	Object* pushi64(int64_t val);
-	Object* pushu64(uint64_t val);
-	Object* pushf32(float val);
-	Object* pushf64(double val);
-	Object* pushstr(std::string val);
-	Object* pushObj(Object val);
+	Object* pushi8(const int8_t &val);
+	Object* pushu8(const uint8_t &val);
+	Object* pushi16(const int16_t &val);
+	Object* pushu16(const uint16_t &val);
+	Object* pushi32(const int32_t &val);
+	Object* pushu32(const uint32_t &val);
+	Object* pushi64(const int64_t &val);
+	Object* pushu64(const uint64_t &val);
+	Object* pushf32(const float &val);
+	Object* pushf64(const double &val);
+	Object* pushstr(const std::string &val);
+	Object* pushObj(const Object &val);
 
 
 	// Actual ROM
