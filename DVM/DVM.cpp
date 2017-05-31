@@ -87,10 +87,8 @@ bool DVM::run()
 				std::cout << top().types.u32 << "\n"; break;
 			case PUSHI64: pushi64(0x00); break;
 			case PUSHU64: pushu64(0x00); break;
-			// TODO: Move the modifiers (ADD, SUb, etc) into their own file.
+			// TODO: Move the modifiers (ADD, SUB, etc) into their own file.
 			case ADD:
-				//Object buff[2];
-				//Type type;
 				type = stack[stk_ptr].curr_type;
 				buff[0] = top();
 				pop();
@@ -101,8 +99,6 @@ bool DVM::run()
 				top().curr_type = type;
 			break;
 			case SUB:
-				//Object buff[2];
-				//Type type;
 				type = stack[stk_ptr].curr_type;
 				buff[0] = top();
 				pop();
@@ -113,8 +109,6 @@ bool DVM::run()
 				top().curr_type = type;
 				break;
 			case MUL:
-				//Object buff[2];
-				//Type type;
 				type = stack[stk_ptr].curr_type;
 				buff[0] = top();
 				pop();
@@ -125,8 +119,6 @@ bool DVM::run()
 				top().curr_type = type;
 				break;
 			case DIV:
-				//Object buff[2];
-				//Type type;
 				type = stack[stk_ptr].curr_type;
 				buff[0] = top();
 				pop();

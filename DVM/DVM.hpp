@@ -66,7 +66,6 @@ public:
 		stk_ptr--;
 		if (current_stack_value < stk_ptr)
 		{
-			//throw StackOverFlowException("Stack underflowed to max value\n");
 			std::cerr << "Stack overflowed to max value\n";
 			std::exit(-1);
 		}

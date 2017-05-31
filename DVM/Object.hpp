@@ -5,7 +5,6 @@
 
 	DVM Objects are 64 bit wide unions containing the C++ datatype equivalents for the DVM to manipulate;
 
-
 */
 
 enum Type : uint8_t {
