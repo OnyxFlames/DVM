@@ -7,6 +7,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <stack>
 #include <map>
 // Stack size is determined by 'slots'.
 // Each slot is 64 bits wide [sizeof(Object)] which is one 'element' of the stack.
@@ -53,6 +54,8 @@ private:
 	};
 	// List of ROM loaded functions, sorted by 4 byte values assigned at loadtime
 	std::map<uint32_t, std::vector<unsigned char>> FUNCTIONS;
+	// For JMP opcodes. RET will return to PC to the last value + 2
+	std::stack<uint16_t> jump_stack;
 	
 public:
 	DVM();

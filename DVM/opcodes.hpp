@@ -10,6 +10,9 @@ enum opcodes : uint32_t
 	PRINTC,			// Operands: 2 bytes. Prints following N bytes of data to stdio casted as ascii characters
 	READ,			// Operands: 2 bytes. Reads N bytes worth of data onto the stack as u8's
 
+	JMP,			// Operands: 2 bytes. Sets to PC to N in the ROM. Stores the current location before jumping.
+	RET,			// Set the PC to the last stored address in the jump stack + 2 (to skip the address from the jump call)
+
 	PUSHI8,		PUSHU8,
 	PUSHI16,	PUSHU16,
 	PUSHI32,	PUSHU32,

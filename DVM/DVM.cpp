@@ -44,7 +44,6 @@ bool DVM::run()
 		{
 			if (state == HALTED)
 			{
-
 				std::clog << "Deleting " << (sizeof(Object) * ALLOC_SIZE) / 8 << " bytes.\n"; 
 				delete[] stack;
 				std::exit(1);
