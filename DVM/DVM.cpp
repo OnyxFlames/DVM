@@ -7,7 +7,7 @@
 DVM::DVM()
 {
 	// Default 16 kilobytes
-	std::clog << "Allocating " << (sizeof(Object) * ALLOC_SIZE) / 8 << " bytes.\n";
+	//std::clog << "Allocating " << (sizeof(Object) * ALLOC_SIZE) / 8 << " bytes.\n";
 	stack = new Object[ALLOC_SIZE];
 	state = RUNNING;
 }
@@ -44,7 +44,7 @@ bool DVM::run()
 		{
 			if (state == HALTED)
 			{
-				std::clog << "Deleting " << (sizeof(Object) * ALLOC_SIZE) / 8 << " bytes.\n"; 
+				//std::clog << "Deleting " << (sizeof(Object) * ALLOC_SIZE) / 8 << " bytes.\n"; 
 				delete[] stack;
 				std::exit(1);
 			}
@@ -53,6 +53,52 @@ bool DVM::run()
 				break;
 			Object buff[2];
 			Type type;
+
+			std::cout << "Stack Top: ";
+			if (stk_ptr < 1)
+			{
+				std::cout << "Empty\n";
+			}
+			else
+				switch (stack[stk_ptr].curr_type)
+				{
+				case Type::type_c_str:
+					std::cout << "\n\tType: C-String Value: " << stack[stk_ptr].types.c_str << "\n";
+					break;
+				case Type::type_i8:
+					std::cout << "\n\tType: i8 Value: " << stack[stk_ptr].types.i8 << "\n";
+					break;
+				case Type::type_u8:
+					std::cout << "\n\tType: u8 Value: " << stack[stk_ptr].types.i8 << "\n";
+					break;
+				case Type::type_i16:
+					std::cout << "\n\tType: i16 Value: " << stack[stk_ptr].types.i16 << "\n";
+					break;
+				case Type::type_u16:
+					std::cout << "\n\tType: u16 Value: " << stack[stk_ptr].types.u16 << "\n";
+					break;
+				case Type::type_i32:
+					std::cout << "\n\tType: i32 Value: " << stack[stk_ptr].types.i32 << "\n";
+					break;
+				case Type::type_u32:
+					std::cout << "\n\tType: u32 Value: " << stack[stk_ptr].types.u32 << "\n";
+					break;
+				case Type::type_i64:
+					std::cout << "\n\tType: i64 Value: " << stack[stk_ptr].types.i64 << "\n";
+					break;
+				case Type::type_u64:
+					std::cout << "\n\tType: u64 Value: " << stack[stk_ptr].types.u64 << "\n";
+					break;
+				case Type::type_f32:
+					std::cout << "\n\tType: f32 Value: " << stack[stk_ptr].types.f32 << "\n";
+					break;
+				case Type::type_f64:
+					std::cout << "\n\tType: f64 Value: " << stack[stk_ptr].types.f64 << "\n";
+					break;
+				default:
+					std::cout << "Unknown type: Address: 0x" << &stack[stk_ptr].types.u64 << "\n";
+					break;
+				}
 			switch (*it)
 			{
 			case HALT: state = HALTED; break;
@@ -70,7 +116,7 @@ bool DVM::run()
 				buff[0].types.i32 <<= 8;
 				buff[0].types.i32 += *++it;
 				pushi32(buff[0].types.i32);
-				std::cout << top().types.i32 << "\n"; break;
+				//std::cout << top().types.i32 << "\n"; break;
 			case PUSHU32: 
 				buff[0].types.u32 = *++it;
 				buff[0].types.u32 <<= 8;
@@ -80,7 +126,7 @@ bool DVM::run()
 				buff[0].types.u32 <<= 8;
 				buff[0].types.u32 += *++it;
 				pushu32(buff[0].types.u32);
-				std::cout << top().types.u32 << "\n"; break;
+				//std::cout << top().types.u32 << "\n"; break;
 			case PUSHI64: pushi64(0x00); break;
 			case PUSHU64: pushu64(0x00); break;
 			// TODO: Move the modifiers (ADD, SUB, etc) into their own file.
@@ -90,7 +136,7 @@ bool DVM::run()
 				pop();
 				buff[1] = top();
 				pop();
-				buff[0].types.u64 = buff[0].types.u64 + buff[1].types.u64;
+				buff[0].types.i64 = buff[0].types.u64 + buff[1].types.u64;
 				pushObj(buff[0]);
 				top().curr_type = type;
 			break;

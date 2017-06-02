@@ -32,6 +32,7 @@ enum Type : uint8_t {
 	type_f32ptr,
 	type_f64,
 	type_f64ptr,
+	type_dvmobject,		// Generic DVM object
 };
 
 struct Object

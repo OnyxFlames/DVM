@@ -4,6 +4,7 @@
 
 #include "StackOverFlowException.hpp"
 
+#include "opcodes.hpp"
 #include <fstream>
 #include <string>
 #include <vector>
@@ -50,7 +51,7 @@ private:
 
 	// Actual ROM
 	std::vector<unsigned char> ROM = {
-		9, 255, 255, 255, 255, 0x00,
+		PUSHI32, 0, 0, 0, 5, PUSHI32, 0, 0, 0, 5, ADD, HALT,
 	};
 	// List of ROM loaded functions, sorted by 4 byte values assigned at loadtime
 	std::map<uint32_t, std::vector<unsigned char>> FUNCTIONS;
