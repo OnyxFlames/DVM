@@ -111,6 +111,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="argument_handler.cpp" />
+    <ClCompile Include="Debug_Utils.cpp" />
     <ClCompile Include="DVM.cpp" />
     <ClCompile Include="DVM_Stack.cpp" />
     <ClCompile Include="main.cpp" />
@@ -118,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="argument_handler.hpp" />
+    <ClInclude Include="Debug_Utils.hpp" />
     <ClInclude Include="DVM.hpp" />
     <ClInclude Include="Object.hpp" />
     <ClInclude Include="opcodes.hpp" />

@@ -5,6 +5,9 @@
 #include "StackOverFlowException.hpp"
 
 #include "opcodes.hpp"
+
+#include "Debug_Utils.hpp"
+
 #include <fstream>
 #include <string>
 #include <vector>
