@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-enum opcodes : uint32_t
+enum opcodes : unsigned char
 {
 	HALT = 0x00,	// Immediately stop execution
 	RESTART,		// restart the VM instance
