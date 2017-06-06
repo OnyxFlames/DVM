@@ -46,6 +46,7 @@ bool DVM::run()
 			{
 				//std::clog << "Deleting " << (sizeof(Object) * ALLOC_SIZE) / 8 << " bytes.\n"; 
 				delete[] stack;
+				DebugUtils::debug_wait();
 				std::exit(1);
 			}
 			// Break out of both loops

@@ -51,5 +51,9 @@ namespace DebugUtils
 				break;
 			}
 	}
-
+	void debug_wait()
+	{
+		std::cout << "Press any key to continue...\n";
+		getchar();
+	}
 }
