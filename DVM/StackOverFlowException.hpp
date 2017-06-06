@@ -8,6 +8,7 @@ class StackOverFlowException : public std::exception
 {
 private:
 	const char* error;
+	
 	// TODO: possibly add stack trace
 public:
 	StackOverFlowException(const char* _error);
