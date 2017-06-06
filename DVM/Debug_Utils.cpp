@@ -53,7 +53,7 @@ namespace DebugUtils
 	}
 	void debug_wait()
 	{
-		std::cout << "Press any key to continue...\n";
+		std::cout << "Press [enter] key to continue...\n";
 		getchar();
 	}
 }
