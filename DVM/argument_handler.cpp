@@ -2,8 +2,10 @@
 
 #include <iostream>
 #include <cstring>
+#include <vector>
+#include "DVM.hpp"
 
-
+extern std::vector<DVM> instances;
 
 void handle_args(int _argc, char* _argv[] )
 {
@@ -17,6 +19,20 @@ void handle_args(int _argc, char* _argv[] )
 		if (strcmp("-help", _argv[i]) == 0)
 		{
 			print_help(_argv[0]);
+		}
+		if (strcmp("-i", _argv[i]) == 0)
+		{
+			if (_argc == i)
+			{
+				std::cerr << "[Error] -i requires a ROM file argument to follow\n";
+				std::exit(-1);
+			}
+			else 
+			{
+				DVM temp;
+				temp.loadROM(_argv[++i]);
+				instances.push_back(temp);
+			}
 		}
 	}
 }
