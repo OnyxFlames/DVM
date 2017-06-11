@@ -43,18 +43,20 @@ bool DVM::loadROM(const std::string filename)
 bool DVM::run()
 {
 	while (state != RESTARTING)
-		for (auto it = ROM.cbegin(); it != ROM.cend(); it++)
+		for (; pc <= ROM.size(); pc++)
 		{
+			//std::clog << "PC: " << pc << " ROM SIZE: " << ROM.size() << "\n";
 			if (state == HALTED)
 			{
 				//std::clog << "Deleting " << (sizeof(Object) * ALLOC_SIZE) / 8 << " bytes.\n"; 
 				std::cout << "[HALTING]\n";
 				if (allocated)
 				{
-					allocated = false;
+					//allocated = false;
 					//delete[] stack;
 				}
 				DebugUtils::debug_wait();
+				pc = ROM.size();
 				std::exit(1);
 			}
 			// Break out of both loops
@@ -65,9 +67,9 @@ bool DVM::run()
 			buff[1].types.u64 = 0x00;
 			Type type;
 
-			DebugUtils::list_stack_top(stack, stk_ptr);
+			//DebugUtils::list_stack_top(stack, stk_ptr);
 
-			switch (*it)
+			switch (ROM[pc])
 			{
 			case HALT: state = HALTED; break;
 			case RESTART: std::cerr << "[KERNEL] RESTARTING VM\n"; restart(); break;
@@ -76,23 +78,23 @@ bool DVM::run()
 			case PUSHI16: pushi16(0x00); break;
 			case PUSHU16: pushu16(0x00); break;
 			case PUSHI32:
-				buff[0].types.i32 = *++it;
+				buff[0].types.i32 = ROM[++pc];
 				buff[0].types.i32 <<= 8;
-				buff[0].types.i32 += *++it;
+				buff[0].types.i32 += ROM[++pc];
 				buff[0].types.i32 <<= 8;
-				buff[0].types.i32 += *++it;
+				buff[0].types.i32 += ROM[++pc];
 				buff[0].types.i32 <<= 8;
-				buff[0].types.i32 += *++it;
+				buff[0].types.i32 += ROM[++pc];
 				pushi32(buff[0].types.i32);
 				//std::cout << top().types.i32 << "\n"; break;
 			case PUSHU32: 
-				buff[0].types.u32 = *++it;
+				buff[0].types.u32 = ROM[++pc];
 				buff[0].types.u32 <<= 8;
-				buff[0].types.u32 += *++it;
+				buff[0].types.u32 += ROM[++pc];
 				buff[0].types.u32 <<= 8;
-				buff[0].types.u32 += *++it;
+				buff[0].types.u32 += ROM[++pc];
 				buff[0].types.u32 <<= 8;
-				buff[0].types.u32 += *++it;
+				buff[0].types.u32 += ROM[++pc];
 				pushu32(buff[0].types.u32);
 				//std::cout << top().types.u32 << "\n"; break;
 			case PUSHI64: pushi64(0x01); break;

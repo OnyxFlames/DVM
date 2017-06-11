@@ -34,6 +34,8 @@ private:
 	uint8_t state = RUNNING;
 	//Index for stack. Can read up to element 2^16-1
 	uint16_t stk_ptr = 0;
+	//Program Counter. Index of the ROM that the VM is currently at.
+	uint16_t pc = 0;
 	// Stack is technically on the heap, but this is for dynamic stack sizes.
 	Object* stack;
 	// Current max size the stack is, if the stack allocates more than this, throw StackOverFlowError

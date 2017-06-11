@@ -47,7 +47,7 @@ namespace DebugUtils
 				std::cout << "\n\tType: f64 Value: " << _stack[_stk_ptr].types.f64 << "\n";
 				break;
 			default:
-				std::cout << "Unknown type: Address: 0x" << &_stack[_stk_ptr].types.u64 << "\n";
+				std::cout << "\n\tUnknown type: Address: 0x" << &_stack[_stk_ptr].types.u64 << "\n";
 				break;
 			}
 	}
