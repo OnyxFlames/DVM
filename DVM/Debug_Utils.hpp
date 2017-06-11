@@ -5,6 +5,9 @@
 
 #include "Object.hpp"
 
+
+#define DEBUG
+
 namespace DebugUtils
 {
 

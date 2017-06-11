@@ -15,9 +15,12 @@ DVM::DVM()
 
 DVM::~DVM()
 {
-
-	std::clog << "Deleting " << (sizeof(Object) * ALLOC_SIZE) / 8 << " bytes.\n";
-	delete[] stack;
+	if (allocated)
+	{
+		allocated = false;
+		std::clog << "Deallocating\n\n";
+		delete[] stack;
+	}
 }
 
 bool DVM::loadROM(const std::string filename)
@@ -46,7 +49,11 @@ bool DVM::run()
 			{
 				//std::clog << "Deleting " << (sizeof(Object) * ALLOC_SIZE) / 8 << " bytes.\n"; 
 				std::cout << "[HALTING]\n";
-				delete[] stack;
+				if (allocated)
+				{
+					allocated = false;
+					//delete[] stack;
+				}
 				DebugUtils::debug_wait();
 				std::exit(1);
 			}

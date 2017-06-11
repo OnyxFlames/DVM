@@ -29,6 +29,8 @@ static int ALLOC_SIZE_MODIFIED = ALLOC_SIZE;
 class DVM
 {
 private:
+	bool allocated = true;
+
 	uint8_t state = RUNNING;
 	//Index for stack. Can read up to element 2^16-1
 	uint16_t stk_ptr = 0;

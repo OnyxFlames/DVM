@@ -11,8 +11,13 @@ void handle_args(int _argc, char* _argv[] )
 {
 	if (_argc == 1)
 	{
+#ifdef DEBUG
+		// Debug mode
+		return;
+#elif
 		print_help(_argv[0]);
 		return;
+#endif
 	}
 	for (int i = 0; i < _argc; i++)
 	{
