@@ -67,6 +67,7 @@ private:
 	
 public:
 	DVM();
+	//DVM(const std::string _rom);
 	~DVM();
 
 	Object& top()

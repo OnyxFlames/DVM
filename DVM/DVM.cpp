@@ -18,7 +18,7 @@ DVM::~DVM()
 	if (allocated)
 	{
 		allocated = false;
-		std::clog << "Deallocating\n\n";
+		//std::clog << "Deallocating\n\n";
 		delete[] stack;
 	}
 }
@@ -50,13 +50,7 @@ bool DVM::run()
 			{
 				//std::clog << "Deleting " << (sizeof(Object) * ALLOC_SIZE) / 8 << " bytes.\n"; 
 				std::cout << "[HALTING]\n";
-				if (allocated)
-				{
-					//allocated = false;
-					//delete[] stack;
-				}
 				DebugUtils::debug_wait();
-				pc = ROM.size();
 				std::exit(1);
 			}
 			// Break out of both loops

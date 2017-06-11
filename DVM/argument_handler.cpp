@@ -5,7 +5,8 @@
 #include <vector>
 #include "DVM.hpp"
 
-extern std::vector<DVM> instances;
+extern unsigned char instance_count;
+extern std::vector<std::string> roms_to_load;
 
 void handle_args(int _argc, char* _argv[] )
 {
@@ -34,9 +35,7 @@ void handle_args(int _argc, char* _argv[] )
 			}
 			else 
 			{
-				DVM temp;
-				temp.loadROM(_argv[++i]);
-				instances.push_back(temp);
+				roms_to_load.push_back(_argv[++i]);
 			}
 		}
 	}
