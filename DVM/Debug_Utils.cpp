@@ -56,4 +56,25 @@ namespace DebugUtils
 		std::cout << "Press [enter] key to continue...\n";
 		getchar();
 	}
+	std::map<unsigned char, std::string> opcode_strings =
+	{
+		{ HALT, "HALT" },
+		{ RESTART, "RESTART" },
+		{ PRINT, "PRINT" },
+		{ PRINTC, "PRINTC" },
+		{ READ, "READ" },
+		{ JMP, "JMP" },
+		{ RET, "RET" },
+
+		{ PUSHI8, "PUSHI8" },{ PUSHU8, "PUSHU8" },
+		{ PUSHI16, "PUSHI16" },{ PUSHU16, "PUSHU16" },
+		{ PUSHI32, "PUSHI32" },{ PUSHU32, "PUSHU32" },
+		{ PUSHI64, "PUSHI64" },{ PUSHU64, "PUSHU64" },
+		{ PUSHF32, "PUSHF32" },{ PUSHF64, "PUSHF64" },
+
+		{ ADD, "ADD" },{ ADDF, "ADDF" },
+		{ SUB, "SUB" },{ SUBF, "SUBF" },
+		{ MUL, "MUL" },{ MULF, "MULF" },
+		{ DIV, "DIV" },{ DIVF, "DIVF" },
+	};
 }

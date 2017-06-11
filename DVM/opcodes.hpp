@@ -2,6 +2,8 @@
 
 #include <cstdint>
 
+#include <map>
+
 enum opcodes : unsigned char
 {
 	HALT = 0x00,	// Immediately stop execution

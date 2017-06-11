@@ -58,7 +58,7 @@ private:
 
 	// Actual ROM
 	std::vector<unsigned char> ROM = {
-		PUSHI32, 0, 0, 0, 5, PUSHI32, 0, 0, 0, 5, HALT,
+		PUSHI32, 0, 0, 0, 5, PUSHI32, 0, 0, 0, 5, ADD, HALT,
 	};
 	// List of ROM loaded functions, sorted by 4 byte values assigned at loadtime
 	std::map<uint32_t, std::vector<unsigned char>> FUNCTIONS;

@@ -61,7 +61,7 @@ bool DVM::run()
 			buff[1].types.u64 = 0x00;
 			Type type;
 
-			//DebugUtils::list_stack_top(stack, stk_ptr);
+			DebugUtils::list_stack_top(stack, stk_ptr);
 
 			switch (ROM[pc])
 			{
