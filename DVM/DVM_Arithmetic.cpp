@@ -19,13 +19,13 @@ unsigned char get_type_weight(Object &obj)
 		return 4; break;
 	case Type::type_i32:
 	case Type::type_u32:
-		return 3;
+		return 3; break;
 	case Type::type_i16:
 	case Type::type_u16:
-		return 2;
+		return 2; break;
 	case Type::type_i8:
 	case Type::type_u8:
-		return 1;
+		return 1; break;
 	default:
 		std::cerr << "Invalid type. (Not implemented?)\n";
 		return 0;
