@@ -8,7 +8,7 @@ namespace DebugUtils
 		std::cout << "Stack Top: ";
 		if (_stk_ptr < 1)
 		{
-			std::cout << "Empty\n";
+			std::cout << "\n\tEmpty\n";
 		}
 		else
 			switch (_stack[_stk_ptr].curr_type)

@@ -35,36 +35,37 @@ unsigned char get_type_weight(Object &obj)
 
 Object add(Object &first, Object &second)
 {
-
+	return Object();
 }
 Object add(int8_t &first, int8_t &second)
 {
-
+	return Object();
 }
 
 Object sub(Object &first, Object &second)
 {
-
+	return Object();
 }
 Object sub(int8_t &first, int8_t &second)
 {
-
+	return Object();
 }
 
 Object mul(Object &first, Object &second)
 {
-
+	return Object();
 }
 Object mul(int8_t &first, int8_t &second)
 {
-
+	return Object();
 }
 
 Object div(Object &first, Object &second)
 {
+	return Object();
 
 }
 Object div(int8_t &first, int8_t &second)
 {
-
+	return Object();
 }

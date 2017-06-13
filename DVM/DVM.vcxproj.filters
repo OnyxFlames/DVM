@@ -36,6 +36,9 @@
     <ClCompile Include="Debug_Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DVM_Arithmetic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="argument_handler.hpp">

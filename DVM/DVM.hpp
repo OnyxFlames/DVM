@@ -26,6 +26,12 @@ enum state {
 #define ALLOC_SIZE 2000u
 static int ALLOC_SIZE_MODIFIED = ALLOC_SIZE;
 
+// register index for the program counter.
+#define prog_counter 0
+#define stack_pointer 1
+#define PC registers[prog_counter].types.u16
+#define SP registers[stack_pointer].types.u16
+
 class DVM
 {
 private:
@@ -33,14 +39,15 @@ private:
 
 	uint8_t state = RUNNING;
 	//Index for stack. Can read up to element 2^16-1
-	uint16_t stk_ptr = 0;
+	//uint16_t stk_ptr = 0;
 	//Program Counter. Index of the ROM that the VM is currently at.
-	uint16_t pc = 0;
+	//uint16_t pc = 0;
 	// Stack is technically on the heap, but this is for dynamic stack sizes.
 	Object* stack;
 	// Current max size the stack is, if the stack allocates more than this, throw StackOverFlowError
 	uint64_t max_size;
-
+	// Work registers. Being on the stack allows for faster speeds, but only allows 8
+	Object registers[8] = { };
 	// inline push functions, returns address that the variable was allocated on
 	Object* pushi8(const int8_t &val);
 	Object* pushu8(const uint8_t &val);
@@ -71,14 +78,14 @@ public:
 
 	Object& top()
 	{
-		return stack[stk_ptr];
+		return stack[SP];
 	}
 
 	void pop()
 	{
-		uint16_t current_stack_value = stk_ptr;
-		stk_ptr--;
-		if (current_stack_value < stk_ptr)
+		uint16_t current_stack_value = SP;
+		SP--;
+		if (current_stack_value < SP)
 		{
 			std::cerr << "Stack overflowed to max value\n";
 			std::exit(-1);

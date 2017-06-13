@@ -8,6 +8,8 @@ DVM::DVM()
 {
 	// Default 16 kilobytes
 	//std::clog << "Allocating " << (sizeof(Object) * ALLOC_SIZE) / 8 << " bytes.\n";
+	for (unsigned char r = 0; r < 8; r++)
+		registers[r].types.u64 = 0;
 	stack = new Object[ALLOC_SIZE];
 	state = RUNNING;
 }
@@ -43,7 +45,7 @@ bool DVM::loadROM(const std::string filename)
 bool DVM::run()
 {
 	while (state != RESTARTING)
-		for (; pc <= ROM.size(); pc++)
+		for (; PC <= ROM.size(); PC++)
 		{
 			//std::clog << "PC: " << pc << " ROM SIZE: " << ROM.size() << "\n";
 			if (state == HALTED)
@@ -61,9 +63,9 @@ bool DVM::run()
 			buff[1].types.u64 = 0x00;
 			Type type;
 
-			DebugUtils::list_stack_top(stack, stk_ptr);
+			DebugUtils::list_stack_top(stack, SP);
 
-			switch (ROM[pc])
+			switch (ROM[PC])
 			{
 			case HALT: state = HALTED; break;
 			case RESTART: std::cerr << "[KERNEL] RESTARTING VM\n"; restart(); break;
@@ -72,24 +74,24 @@ bool DVM::run()
 			case PUSHI16: pushi16(0x00); break;
 			case PUSHU16: pushu16(0x00); break;
 			case PUSHI32:
-				buff[0].types.i32 = ROM[++pc];
+				buff[0].types.i32 = ROM[++PC];
 				buff[0].types.i32 <<= 8;
-				buff[0].types.i32 += ROM[++pc];
+				buff[0].types.i32 += ROM[++PC];
 				buff[0].types.i32 <<= 8;
-				buff[0].types.i32 += ROM[++pc];
+				buff[0].types.i32 += ROM[++PC];
 				buff[0].types.i32 <<= 8;
-				buff[0].types.i32 += ROM[++pc];
+				buff[0].types.i32 += ROM[++PC];
 				pushi32(buff[0].types.i32);
 				//std::cout << top().types.i32 << "\n"; 
 				break;
 			case PUSHU32: 
-				buff[0].types.u32 = ROM[++pc];
+				buff[0].types.u32 = ROM[++PC];
 				buff[0].types.u32 <<= 8;
-				buff[0].types.u32 += ROM[++pc];
+				buff[0].types.u32 += ROM[++PC];
 				buff[0].types.u32 <<= 8;
-				buff[0].types.u32 += ROM[++pc];
+				buff[0].types.u32 += ROM[++PC];
 				buff[0].types.u32 <<= 8;
-				buff[0].types.u32 += ROM[++pc];
+				buff[0].types.u32 += ROM[++PC];
 				pushu32(buff[0].types.u32);
 				//std::cout << top().types.u32 << "\n"; 
 				break;
@@ -97,7 +99,7 @@ bool DVM::run()
 			case PUSHU64: pushu64(0x01); break;
 			// TODO: Move the modifiers (ADD, SUB, etc) into their own file.
 			case ADD:
-				type = stack[stk_ptr].curr_type;
+				type = stack[SP].curr_type;
 				buff[0] = top();
 				pop();
 				buff[1] = top();
@@ -107,7 +109,7 @@ bool DVM::run()
 				top().curr_type = type;
 			break;
 			case SUB:
-				type = stack[stk_ptr].curr_type;
+				type = stack[SP].curr_type;
 				buff[0] = top();
 				pop();
 				buff[1] = top();
@@ -117,7 +119,7 @@ bool DVM::run()
 				top().curr_type = type;
 				break;
 			case MUL:
-				type = stack[stk_ptr].curr_type;
+				type = stack[SP].curr_type;
 				buff[0] = top();
 				pop();
 				buff[1] = top();
@@ -127,7 +129,7 @@ bool DVM::run()
 				top().curr_type = type;
 				break;
 			case DIV:
-				type = stack[stk_ptr].curr_type;
+				type = stack[SP].curr_type;
 				buff[0] = top();
 				pop();
 				buff[1] = top();
