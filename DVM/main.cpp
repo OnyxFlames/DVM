@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
 	instances.emplace_back(DVM());
 	for (auto &inst : instances)
 		inst.run();
-	getchar();
+	//getchar();
 
 	return 0;
 }

@@ -33,6 +33,7 @@ enum Type : uint8_t {
 	type_f64,
 	type_f64ptr,
 	type_dvmobject,		// Generic DVM object
+	type_dvmfunction,	// DVM runtime function
 };
 
 struct Object
@@ -72,6 +73,9 @@ struct Object
 		float* f32ptr;
 		double f64;
 		double* f64ptr;
+
+		// index of the function map in which this function resides.
+		uint32_t dvmfunc;
 
 	} types;
 };
