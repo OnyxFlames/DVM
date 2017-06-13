@@ -80,7 +80,8 @@ bool DVM::run()
 				buff[0].types.i32 <<= 8;
 				buff[0].types.i32 += ROM[++pc];
 				pushi32(buff[0].types.i32);
-				//std::cout << top().types.i32 << "\n"; break;
+				//std::cout << top().types.i32 << "\n"; 
+				break;
 			case PUSHU32: 
 				buff[0].types.u32 = ROM[++pc];
 				buff[0].types.u32 <<= 8;
@@ -90,7 +91,8 @@ bool DVM::run()
 				buff[0].types.u32 <<= 8;
 				buff[0].types.u32 += ROM[++pc];
 				pushu32(buff[0].types.u32);
-				//std::cout << top().types.u32 << "\n"; break;
+				//std::cout << top().types.u32 << "\n"; 
+				break;
 			case PUSHI64: pushi64(0x01); break;
 			case PUSHU64: pushu64(0x01); break;
 			// TODO: Move the modifiers (ADD, SUB, etc) into their own file.
