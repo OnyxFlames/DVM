@@ -1,7 +1,5 @@
 #include "DVM.hpp"
 
-#include "StackOverFlowException.hpp"
-
 #include "opcodes.hpp"
 
 DVM::DVM()

@@ -2,7 +2,7 @@
 
 #include "Object.hpp"
 
-#include "StackOverFlowException.hpp"
+//#include "StackOverFlowException.hpp"
 
 #include "opcodes.hpp"
 
