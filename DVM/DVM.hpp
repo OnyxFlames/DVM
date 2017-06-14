@@ -64,7 +64,7 @@ private:
 
 	// Actual ROM
 	std::vector<unsigned char> ROM = {
-		PUSHU32, 0, 0, 0, 5, PUSHU32, 0, 0, 0, 5, ADD, HALT,
+		PUSHI32, 0, 0, 0, 5, PUSHI32, 0, 0, 0, 5, ADD, HALT,
 	};
 	// List of ROM loaded functions, sorted by 4 byte values assigned at loadtime
 	std::map<uint32_t, std::vector<unsigned char>> FUNCTIONS;
@@ -78,12 +78,15 @@ public:
 
 	Object& top()
 	{
+		//std::cout << "Topping TypeID: " << stack[SP].curr_type << "\n";
 		return stack[SP];
 	}
 
 	Object& pop()
 	{
-		uint16_t current_stack_value = SP--;
+		//std::cout << "Popping TypeID: " << stack[SP--].curr_type << "\n";
+		SP--;
+		uint16_t current_stack_value = SP;
 		//std::cout << "Stack pointer: " << --SP << "\n";
 		if (current_stack_value < SP)
 		{

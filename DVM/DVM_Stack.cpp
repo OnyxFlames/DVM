@@ -36,7 +36,8 @@ Object* DVM::pushi32(const int32_t &val)
 {
 	//if (stk_ptr + 1 > ALLOC_SIZE_MODIFIED)
 		//throw StackOverFlowException("Stack tried to allocate more space than available!\n");
-	stack[++SP].types.i32 = val;
+	SP++;
+	stack[SP].types.i32 = val;
 	stack[SP].curr_type = Type::type_i32;
 	return &stack[SP];
 }

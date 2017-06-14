@@ -61,7 +61,7 @@ bool DVM::run()
 			Object buff[2];
 			buff[0].types.u64 = 0x00;
 			buff[1].types.u64 = 0x00;
-			// Type is unused right now. Comment out to suppress warnings.
+			// type is unused right now. Comment out to suppress warnings.
 			//Type type;
 
 			DebugUtils::list_stack_top(stack, SP);
@@ -85,7 +85,7 @@ bool DVM::run()
 				pushi32(buff[0].types.i32);
 				//std::cout << top().types.i32 << "\n"; 
 				break;
-			case PUSHU32: 
+			case PUSHU32:
 				buff[0].types.u32 = ROM[++PC];
 				buff[0].types.u32 <<= 8;
 				buff[0].types.u32 += ROM[++PC];
@@ -104,8 +104,8 @@ bool DVM::run()
 				pop();
 				buff[1] = top();
 				pop();
-				if (buff[0].curr_type != buff[1].curr_type)
-					;// std::cerr << "Push functions must have failed!\n\n";
+				//if (buff[0].curr_type != buff[1].curr_type)
+					//std::cerr << "Push functions must have failed!\n\n";
 				pushObj(add(buff[0], buff[1]));
 				break;
 			case SUB:
