@@ -10,6 +10,7 @@ extern std::vector<std::string> roms_to_load;
 
 void handle_args(int _argc, char* _argv[] )
 {
+	using std::strcmp;
 	if (_argc == 1)
 	{
 #ifdef DEBUG
@@ -37,6 +38,12 @@ void handle_args(int _argc, char* _argv[] )
 			{
 				roms_to_load.push_back(_argv[++i]);
 			}
+		}
+		if (strcmp("-v", _argv[i]) == 0 || strcmp("--version", _argv[i]) == 0)
+		{
+			std::cout << "Version:\t" << VERSION_MAJOR << "." << VERSION_MINOR << " " << VERSION_SUFFIX << "\n";
+			std::cout << "Compiled:\t" << __DATE__ << " at " << __TIME__ << "\n";
+			std::exit(0);
 		}
 	}
 }

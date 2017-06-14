@@ -62,7 +62,8 @@ namespace DebugUtils
 		std::cout << "Press [enter] key to continue...\n";
 		getchar();
 	}
-	std::map<unsigned char, std::string> opcode_strings =
+	std::map<unsigned char, std::string> 
+	opcode_strings =
 	{
 		{ HALT, "HALT" },
 		{ RESTART, "RESTART" },
