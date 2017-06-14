@@ -97,6 +97,6 @@ Object* DVM::pushObj(const Object &val)
 	//if (stk_ptr + 1 > ALLOC_SIZE_MODIFIED)
 		//throw StackOverFlowException("Stack tried to allocate more space than available!\n");
 	stack[++SP] = val;
-	stack[SP].curr_type = Type::unknown;
+	//stack[SP].curr_type = Type::unknown;
 	return &stack[SP];
 }

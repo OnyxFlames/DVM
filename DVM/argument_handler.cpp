@@ -23,9 +23,10 @@ void handle_args(int _argc, char* _argv[] )
 	}
 	for (int i = 0; i < _argc; i++)
 	{
-		if (strcmp("-help", _argv[i]) == 0)
+		if (strcmp("-h", _argv[i]) == 0 || strcmp("--help", _argv[i]) == 0)
 		{
 			print_help(_argv[0]);
+			return;
 		}
 		if (strcmp("-i", _argv[i]) == 0)
 		{

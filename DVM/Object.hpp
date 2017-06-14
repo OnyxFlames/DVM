@@ -38,7 +38,7 @@ enum Type : uint8_t {
 
 struct Object
 {
-	Type curr_type = unknown;
+	Type curr_type;
 
 	union Object_Type {
 		//C-Strings
@@ -76,6 +76,10 @@ struct Object
 
 		// index of the function map in which this function resides.
 		uint32_t dvmfunc;
-
 	} types;
+	Object()
+	{
+		curr_type = unknown;
+		types.u64 = 0;
+	}
 };

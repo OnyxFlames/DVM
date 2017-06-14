@@ -6,7 +6,9 @@ DVM::DVM()
 {
 	// Default 16 kilobytes
 	//std::clog << "Allocating " << (sizeof(Object) * ALLOC_SIZE) / 8 << " bytes.\n";
-	for (unsigned char r = 0; r < 8; r++)
+	SP = 0;
+	PC = 0;
+	for (unsigned char r = 2; r < 8; r++)
 		registers[r].types.u64 = 0;
 	stack = new Object[ALLOC_SIZE];
 	state = RUNNING;
@@ -59,7 +61,8 @@ bool DVM::run()
 			Object buff[2];
 			buff[0].types.u64 = 0x00;
 			buff[1].types.u64 = 0x00;
-			Type type;
+			// Type is unused right now. Comment out to suppress warnings.
+			//Type type;
 
 			DebugUtils::list_stack_top(stack, SP);
 
@@ -91,50 +94,40 @@ bool DVM::run()
 				buff[0].types.u32 <<= 8;
 				buff[0].types.u32 += ROM[++PC];
 				pushu32(buff[0].types.u32);
-				//std::cout << top().types.u32 << "\n"; 
+				//std::cout << "TypeID: " << top().curr_type << "\n"; 
 				break;
 			case PUSHI64: pushi64(0x01); break;
 			case PUSHU64: pushu64(0x01); break;
 			// TODO: Move the modifiers (ADD, SUB, etc) into their own file.
 			case ADD:
-				type = stack[SP].curr_type;
 				buff[0] = top();
 				pop();
 				buff[1] = top();
 				pop();
-				buff[0].types.u64 = buff[0].types.u64 + buff[1].types.u64;
-				pushObj(buff[0]);
-				top().curr_type = type;
-			break;
+				if (buff[0].curr_type != buff[1].curr_type)
+					;// std::cerr << "Push functions must have failed!\n\n";
+				pushObj(add(buff[0], buff[1]));
+				break;
 			case SUB:
-				type = stack[SP].curr_type;
 				buff[0] = top();
 				pop();
 				buff[1] = top();
 				pop();
-				buff[0].types.u64 = buff[0].types.u64 - buff[1].types.u64;
-				pushObj(buff[0]);
-				top().curr_type = type;
+				pushObj(sub(buff[0], buff[1]));
 				break;
 			case MUL:
-				type = stack[SP].curr_type;
 				buff[0] = top();
 				pop();
 				buff[1] = top();
 				pop();
-				buff[0].types.u64 = buff[0].types.u64 * buff[1].types.u64;
-				pushObj(buff[0]);
-				top().curr_type = type;
+				pushObj(mul(buff[0], buff[1]));
 				break;
 			case DIV:
-				type = stack[SP].curr_type;
 				buff[0] = top();
 				pop();
 				buff[1] = top();
 				pop();
-				buff[0].types.u64 = buff[0].types.u64 + buff[1].types.u64;
-				pushObj(buff[0]);
-				top().curr_type = type;
+				pushObj(div(buff[0], buff[1]));
 				break;
 			case PRINT:
 

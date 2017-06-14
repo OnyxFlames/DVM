@@ -53,7 +53,7 @@ namespace DebugUtils
 				std::cout << "\n\tType: dvmfunction Address: 0x" << &_stack[_stk_ptr].types.u64 << "\n";
 				break;
 			default:
-				std::cout << "\n\tUnknown type: Address: 0x" << &_stack[_stk_ptr].types.u64 << "\n";
+				std::cout << "\n\tUnknown type: Address: 0x" << &_stack[_stk_ptr].types.u64 << " Type ID: " << _stack[_stk_ptr].curr_type << "\n";
 				break;
 			}
 	}
