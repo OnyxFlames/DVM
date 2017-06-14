@@ -45,7 +45,8 @@ Object* DVM::pushu32(const uint32_t &val)
 {
 	//if (stk_ptr + 1 > ALLOC_SIZE_MODIFIED)
 		//throw StackOverFlowException("Stack tried to allocate more space than available!\n");
-	stack[++SP].types.u32 = val;
+	SP++;
+	stack[SP].types.u32 = val;
 	stack[SP].curr_type = Type::type_u32;
 	return &stack[SP];
 }
@@ -100,4 +101,43 @@ Object* DVM::pushObj(const Object &val)
 	stack[++SP] = val;
 	//stack[SP].curr_type = Type::unknown;
 	return &stack[SP];
+}
+void print_obj(const Object &obj)
+{
+	switch (obj.curr_type)
+	{
+	case Type::type_f64:
+		std::cout << obj.types.f64;
+		break;
+	case Type::type_f32:
+		std::cout << obj.types.f32; 
+		break;
+	case Type::type_i64:
+		std::cout << obj.types.i64;
+		break;
+	case Type::type_u64:
+		std::cout << obj.types.u64; 
+		break;
+	case Type::type_i32:
+		std::cout << obj.types.i32;
+		break;
+	case Type::type_u32:
+		std::cout << obj.types.u32;
+		break;
+	case Type::type_i16:
+		std::cout << obj.types.i16;
+		break;
+	case Type::type_u16:
+		std::cout << obj.types.u16; 
+		break;
+	case Type::type_i8:
+		std::cout << obj.types.i8;
+		break;
+	case Type::type_u8:
+		std::cout << obj.types.u8; 
+		break;
+	default:
+		std::cerr << "Invalid TypeID(" << obj.curr_type << "). (Not implemented?)\n";
+		break;
+	}
 }

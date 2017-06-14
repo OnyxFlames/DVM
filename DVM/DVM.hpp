@@ -64,7 +64,7 @@ private:
 
 	// Actual ROM
 	std::vector<unsigned char> ROM = {
-		PUSHI32, 0, 0, 0, 5, PUSHI32, 0, 0, 0, 5, ADD, HALT,
+		PUSHU32, 0, 0, 0, 5, PUSHU32, 0, 0, 0, 5, MUL, PRINT, HALT,
 	};
 	// List of ROM loaded functions, sorted by 4 byte values assigned at loadtime
 	std::map<uint32_t, std::vector<unsigned char>> FUNCTIONS;
@@ -107,3 +107,4 @@ Object add(Object &first, Object &second);
 Object sub(Object &first, Object &second);
 Object mul(Object &first, Object &second);
 Object div(Object &first, Object &second);
+void print_obj(const Object &obj);

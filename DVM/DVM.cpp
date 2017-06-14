@@ -130,7 +130,7 @@ bool DVM::run()
 				pushObj(div(buff[0], buff[1]));
 				break;
 			case PRINT:
-
+				print_obj(pop());
 				break;
 			case PRINTC:
 
